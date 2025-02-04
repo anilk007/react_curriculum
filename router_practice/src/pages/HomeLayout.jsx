@@ -18,6 +18,24 @@ const HomeLayout = () => {
             <li>
               <NavLink to="landing">Landing</NavLink>
             </li>
+
+            <li>
+              <NavLink to="user_list_with_data">User List HOC demo..</NavLink>
+            </li>
+
+            <li>
+              <NavLink to="enhanced_component">Enhanced Component HOC demo..</NavLink>
+            </li>
+
+            
+            <li>
+              <NavLink to="react-query-example">react query example</NavLink>
+            </li>
+
+            <li>
+              <NavLink to="react-portal-example">react portal example</NavLink>
+            </li>
+
             <li>
               <NavLink to="greetings">Greetings</NavLink>
             </li>

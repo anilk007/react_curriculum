@@ -2487,8 +2487,135 @@ trello
 https://trello.com/b/K8rJ1nyD/training-react-js
 
 
+===== day-9 ============= Advance React patterns ==========================
+(1) HOC
+UserListWithData
 
+C:\anil\training\react\jan_2025\router_practice\src\components\HOC\with_data\WithData.jsx
 
+const UserListWithData = WithData(UserList, dataURL); 
+
+(2) 
+Example  Authentication (Protecting Routes)
+
+This is a classic use case. Imagine you have several routes in your application that should only be accessible
+to authenticated users.  Instead of repeating authentication checks and logic in each component, you can create an withAuth HOC.
+ 
+
+How it works: withAuth takes a component (WrappedComponent) as an argument and returns a new component (AuthenticatedComponent). AuthenticatedComponent checks the authentication status. If the user is authenticated, it renders the original WrappedComponent; 
+otherwise, it renders a login message or redirects.
+Benefits: You can now easily protect any component by wrapping it with withAuth. The authentication logic is centralized and reusable.
+
+const withAuth = (WrappedComponent) => {
+  return (props) => {
+    if (isAuthenticated()) {
+      return <WrappedComponent {...props} />;
+    } else {
+      // Redirect or display a message if not authenticated
+      return (
+        <div>
+          <h1>Unauthorized</h1>
+          <p>Please log in to access this page.</p>
+          {/* You could add a login button/link here */}
+        </div>
+      );
+    }
+  };
+};
+
+(3) 
+
+import React, { lazy, Suspense } from 'react';
+
+const About = lazy(() => import('./pages/About')); // Dynamic import
+
+<Suspense fallback={<div>Loading...</div>}> 
+   <About />
+</Suspense>
+
+(4)
+React Query, a data-fetching library from Tanstack. React Query helps you handle data-fetching in a super easy way.
+You get access to hooks such as...
+
+Imagine you’re working on a project where you need to fetch data from an API, cache it for better performance,
+and synchronize it in the background. You might also need to handle pagination, infinite loading, and 
+other complex scenarios. 
+Doing all of this manually can be a daunting task and can lead to a lot of boilerplate code.
+
+import { useQuery } from "@tanstack/react-query";
+
+C:\anil\training\react\react_query_example_diagram
+
+===========================================================================
+
+(5)Creating a React portal component outside the `root` div is useful in scenarios like:
+
+1.  Modals & Dialogs   
+   - Prevents issues with parent `overflow: hidden` or `z-index`.
+   - Ensures the modal appears above all other content.
+
+2.  Tooltips & Popovers   
+   - Helps avoid clipping inside containers with `overflow: hidden`.
+
+3.  Dropdowns & Menus   
+   - Ensures the dropdown is rendered above other elements.
+
+4.  Notifications & Toast Messages   
+   - Allows global notifications to be displayed outside the main React tree.
+
+=====================================================================================	
+(6)
+ C:\anil\training\react\jan_2025\router_practice\src\components\react-portal-example\PortalComponent.jsx
+
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+
+const PortalComponent = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <button onClick={() => setIsOpen(true)}>Open Portal</button>
+      {isOpen &&
+        ReactDOM.createPortal(
+          <div style={{
+            position: "fixed", top: 0, left: 0, width: "100%", height: "100%",
+            backgroundColor: "rgba(0,0,0,0.5)", display: "flex", justifyContent: "center", alignItems: "center"
+          }}>
+            <div style={{ background: "white", padding: "20px", borderRadius: "8px" }}>
+              <h2>Portal Content</h2>
+              <p>This is rendered using React Portal.</p>
+              <button onClick={() => setIsOpen(false)}>Close</button>
+            </div>
+          </div>,
+          document.body // document.getElementById('portal-root') // Place to mount the portal container
+        )}
+    </div>
+  );
+};
+export default PortalComponent;
+
+//=========================================
+(7)
+button:nth-child(1) {
+    background-color: red;
+  }
+
+  button:nth-child(2) {
+    background-color: blue;
+  }
+
+  button:nth-child(3) {
+    background-color: green;
+  }
+
+  button:nth-child(4) {
+    background-color: yellow;
+  }
+
+  button:nth-child(5) {
+    background-color: purple;
+  }
 
 	
 		

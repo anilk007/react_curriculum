@@ -1,15 +1,18 @@
 
 import './App.css'
 
+import React, { lazy, Suspense } from 'react';
+
 import {
   HomeLayout,
-  About,
   Landing,
   Newsletter,
   Cocktail,
 } from './pages';
 
-import { createBrowserRouter, RouterProvider , Navigate } from 'react-router-dom';
+// const About = lazy(() => import('./pages/About'));
+
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 
 import LocationExample from './components/LocationExample'
 import Counter from './components/counter/Counter';
@@ -24,12 +27,28 @@ import CheckboxExample from './components/checkbox-example/CheckboxExample';
 
 import LoginForm from './components/login-form/LoginForm';
 
+import EnhancedComponent from './components/call_HOC_component/enhanced_component/EnhancedComponent';
+
+import UserList from './components/call_HOC_component/user_list/UserList'
+
+import PostList from './components/react-query-example/PostList';
+
+const About = lazy(() => import('./pages/About'));
+
 const mockUser = { name: 'John Doe', email: 'john.doe@example.com' };
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import PortalComponent from './components/react-portal-example/PortalComponent';
+
+const queryClient = new QueryClient();
 
 const submitLogin = (username, password) => {
   console.log('Login attempt:', username, password);
 };
 
+const sampleData = "Hello from Parent!";
+const isLoading = false; // Toggle this to see the loading state
 
 const router = createBrowserRouter([
   {
@@ -41,12 +60,27 @@ const router = createBrowserRouter([
         element: <Landing />,
       },
       {
+        path: 'enhanced_component',
+        element: <EnhancedComponent isLoading={isLoading} data={sampleData} />,
+      },
+      {
+        path: 'user_list_with_data',
+        element: <UserList />,
+      }, {
+        path: 'react-query-example',
+        element: <PostList />,
+      },
+      {
+        path: 'react-portal-example',
+        element: <PortalComponent />,
+      },
+      {
         path: 'greetings',
-        element: <Greeting  name="BOB"/>,
+        element: <Greeting name="BOB" />,
       },
       {
         path: 'userprofile',
-        element: <UserProfile  user={mockUser}/>,
+        element: <UserProfile user={mockUser} />,
       },
       {
         path: 'checkbox_example',
@@ -54,7 +88,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'login_form',
-        element: <LoginForm submitLogin={submitLogin}/>,
+        element: <LoginForm submitLogin={submitLogin} />,
       },
       {
         path: 'cocktail',
@@ -72,7 +106,12 @@ const router = createBrowserRouter([
       },
       {
         path: 'about',
-        element: <About />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <About />
+          </Suspense>
+        )
+        ,
       },
       {
         path: 'counter',
@@ -87,8 +126,15 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
- 
-  return <RouterProvider router={router} />;
+
+  return (
+
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+
+  );
+
 }
 
 export default App
