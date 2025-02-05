@@ -2618,4 +2618,136 @@ button:nth-child(1) {
   }
 
 	
+=========================================================================
+==== day-10 =============Next.js 
+
+(1) npm i create-next-app --save
+
+(2) https://codesandbox.io/
+
+React.new in browser tab
+
+(3) SSR, server components
+
+(4) Next.js Resources
+
+https://codedrivendevelopment.com/posts/rarely-known-nextjs-features
+
+How React server components work: an in-depth guide
+https://www.plasmic.app/blog/how-react-server-components-work
+
+A nice way of visualizing the RSC payload right in Chrome's DevTools
+https://www.alvar.dev/blog/creating-devtools-for-react-server-components
+
+ Image Component: In-Depth Tutorial
+https://www.fullstackfoundations.com/blog/nextjs-image-component-tutorial
+
+Finally Master Next.js's Most Complex Feature - Caching
+https://blog.webdevsimplified.com/2024-01/next-js-app-router-cache/
+
+(5) Explain Server side rendering diagram
+
+PHP
+Wordpress
+
+Next.js
+Remix
+
+(6) npx create-next-app device_management_app
+
+(7) next js documentation
+https://nextjs.org/docs
+
+(8) Hyderation
+
+(9) <a href="   ">
+
+<Link href="   "
+
+<Link to="  "
+
+(10) SSR (Server side routing) , File base routing
+
+(11) Full stack web devlopment
+
+(12) client side rendering (CSR) v/s Server side rendering (SSR)
+
+	(a) 
+	JS Bundle (HTML, JS, CSS)
+	
+	Slow
+	
+	(b) fetch data after bundle load in CSR - Spinner		Server side rendering (SSR) is fast.
+	    Request waterfall - slow
 		
+	(c) CSR - highly interactive 						- Server side rendering (SSR) less interactive
+	 
+	(d) CSR -  SEO performs poorly in CSR.				Server side rendering (SSR) - SEO sines 
+														Largest Contentful Paint (LCP) and 
+														First Contentful Paint (FCP) are faster in Server side rendering (SSR) 
+	
+
+
+(13) Hyderation - SSR sends bundle also along with HTML for interactivity
+	Water dry demo
+	
+(14) Next js by Vercel
+		Meta framework over React js
+		
+(15) Next js follow best practices
+  Routing
+  Data fetching
+  Optimization techniques
+  SEO - Preloading
+  Layouts
+  error boundry
+  Loading 
+  Parallel routing
+  Caching
+  
+(16) \my-next-app\next.config.ts  
+  
+(16) app router
+
+app/page.js
+
+(17)
+/cabins
+/about
+/contact
+
+(18) VS Code ===> Custom Labels
+**/page.js				PAGE : ${dirname}
+
+(19) Navigation.js
+
+
+import Link from "next/link";
+
+export default function Navigation() {
+  return (
+    <>
+      <nav className='z-10 text-xl'>
+        <ul className="flex gap-16 items-center">
+          <li> <Link href="/cabins">Cabins</Link> </li>
+          <li> <Link href="/account">Account</Link> </li>
+          <li> <Link href="/about">About</Link> </li>
+          <li> <Link href="/contact">Contact</Link> </li>
+        </ul>
+      </nav>
+    </>
+
+  );
+}
+
+Link only loads require part on page (SPA)
+Out of box optimization - 
+	Pre fetch
+	optimize chunk rendering
+	caching
+	
+(19) Micro front end architecture - 
+     React Mobile App   - Vijay
+	 React Application deployment - netify, vercel, firebase - Mayank Sunder
+	 
+	 
