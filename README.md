@@ -2750,4 +2750,93 @@ Out of box optimization -
      React Mobile App   - Vijay
 	 React Application deployment - netify, vercel, firebase - Mayank Sunder
 	 
-	 
+===== day 11 ============= Micro Front end Architecture =============
+
+(1) npm install react react-dom webpack webpack-cli webpack-dev-server html-webpack-plugin babel-loader @babel/core @babel/preset-env @babel/preset-react
+
+(2) Vite uses Rollup as its bundler.
+
+(3) npm install webpack webpack-cli webpack-dev-server --save
+
+(4) vite
+
+remote_app
+===========
+npm create vite@latest remote_app -- --template react
+npm install
+npm install @module-federation/enhanced
+vite.config.js
+npm run build
+
+\remote_app\dist\assets\remoteEntry.js file will be created
+
+npm run preview
+
+
+
+host app
+=========
+npm create vite@latest host_app -- --template react
+npm install
+npm install @module-federation/enhanced
+vite.config.js
+npm run build
+npm run preview
+
+
+
+
+npm create vite@latest host_app -- --template react
+
+
+npm install @module-federation/enhanced
+
+vite.config.js
+
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import federation from '@module-federation/enhanced';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    federation({
+      name: "headerApp",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./Header": "./src/components/Header.jsx",
+      },
+      shared: ["react", "react-dom"]
+    })
+  ],
+  server: {
+    port: 5001,
+  },
+});
+
+
+(5) Setup Container App
+
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import federation from '@module-federation/enhanced';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    federation({
+      name: "containerApp",
+      remotes: {
+        headerApp: "headerApp@http://localhost:5001/remoteEntry.js",
+      },
+      shared: ["react", "react-dom"]
+    })
+  ],
+  server: {
+    port: 5000,
+  },
+});
+
+(6) npm i @originjs/vite-plugin-federation --save
+
+
