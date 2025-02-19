@@ -1,0 +1,33 @@
+image: node:latest  # Use a Docker image with Node.js
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  script:
+    - npm install  # Install project dependencies
+    - npm run build  # Build the project (e.g., using a build script in package.json)
+  artifacts: # Define artifacts to be passed to the next stage
+    paths:
+      - dist/ # Example: Include the 'dist' directory containing the built files
+    expire_in: 1 week # Keep the artifacts for a week
+
+test:
+  stage: test
+  script:
+    - npm install
+    - npm test # Run tests
+
+deploy:
+  stage: deploy
+  environment: production # Define the target environment
+  only: # Only run on specific branches or tags
+    - main # Deploy only from the 'main' branch
+    - tags # Deploy on tags (for releases)
+  script:
+    - echo "Deploying to production..."
+    - # Your deployment commands go here (e.g., using rsync, scp, or a deployment tool)
+    - # Example: rsync -avz dist/ user@yourserver:/var/www/html/yourproject
