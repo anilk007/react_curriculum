@@ -2840,3 +2840,21 @@ export default defineConfig({
 (6) npm i @originjs/vite-plugin-federation --save
 
 
+===== day 12 ============= CI CD Pipeline =============
+
+	 React Application deployment - netify, vercel, firebase
+	 
+	 
+	AWS Amplify	Simple static React apps with CI/CD
+	S3 + CloudFront	Static apps needing CDN & HTTPS
+	EC2 + Nginx	Apps needing more control & backend
+	Elastic Beanstalk	Full-stack apps (React + Node.js)
+	
+	Method	Best For
+	Azure Static Web Apps	Simple static React apps with CI/CD
+	Azure App Service	React apps needing Node.js backend
+	Azure Blob Storage + CDN	Static hosting with CDN speed
+	Azure Kubernetes Service	Scalable, containerized apps
+	
+	
+	Gitlab CI/CD
