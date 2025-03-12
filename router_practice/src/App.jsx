@@ -41,6 +41,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import PortalComponent from './components/react-portal-example/PortalComponent';
 
+import StepFunction from './components/step-function/StepFunction';
+
 const queryClient = new QueryClient();
 
 const submitLogin = (username, password) => {
@@ -120,6 +122,10 @@ const router = createBrowserRouter([
       {
         path: 'todo',
         element: <Todo />,
+      },
+      {
+        path: 'step-function',
+        element: <StepFunction />,
       }
     ],
   },

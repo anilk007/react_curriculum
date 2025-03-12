@@ -15,6 +15,11 @@ const HomeLayout = () => {
         <h1>HomeLayout</h1>
         <nav>
           <ul>
+          <li>
+              <NavLink to="step-function">Step Function</NavLink>
+            </li>
+
+
             <li>
               <NavLink to="landing">Landing</NavLink>
             </li>
